@@ -27,3 +27,20 @@ switch:
         ['/home/docker/senz/switch/logs:/app/logs', '/home/docker/senz/switch/keys:/app/.keys']
     links:
         - mongodb
+
+
+trans:
+    image: erangaeb/sdbltrans:0.4
+    container_name: trans
+    environment:
+        - SWITCH_HOST=dev.localhost 
+        - SWITCH_PORT=7070
+        - MYSQL_HOST=dev.localhost 
+        - MYSQL_PORT=3306
+        - EPIC_HOST="52.5.201.100"
+        - EPIC_PORT=7070
+    volumes:
+        ['/home/docker/sdbl/trans/logs:/app/logs:rw', '/home/docker/sdbl/trans/keys:/app/.keys:rw']
+    links:
+        - mysql
+        - switch
