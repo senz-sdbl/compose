@@ -1,0 +1,29 @@
+mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+        - 3306:3306
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+
+mongodb: 
+    image: erangaeb/senzmongodb:0.1
+    container_name: senzmongodb
+    volumes:
+        ['/home/docker/senz/mongodb:/data/db']
+    ports:
+        - 27017:27017
+
+
+switch:
+    image: erangaeb/senzswitch:0.52
+    container_name: senzswitch
+    ports:
+        - 7070:7070
+    environment:
+        - MONGO_HOST=dev.localhost 
+        - SWITCH_MODE=DEV
+    volumes:
+        ['/home/docker/senz/switch/logs:/app/logs', '/home/docker/senz/switch/keys:/app/.keys']
+    links:
+        - mongodb
