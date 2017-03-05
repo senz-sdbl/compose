@@ -6,6 +6,7 @@
     environment:
         - MYSQL_ROOT_PASSWORD=root
 
+
 mongodb:
     image: erangaeb/senzmongodb:0.1
     container_name: senzmongodb
@@ -13,6 +14,7 @@ mongodb:
         ['/home/docker/bankz/mongodb:/data/db']
     ports:
         - 27017:27017
+
 
 switch:
     image: erangaeb/senzswitch:0.52
@@ -26,6 +28,7 @@ switch:
         ['/home/docker/bankz/switch/logs:/app/logs', '/home/docker/bankz/switch/keys:/app/.keys']
     links:
         - mongodb
+
 
 trans:
     image: erangaeb/sdbltrans:0.6
@@ -42,6 +45,7 @@ trans:
     links:
         - mysql
         - switch
+
 
 inq:
     image: erangaeb/sdblinq:0.1
