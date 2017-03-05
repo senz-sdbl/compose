@@ -22,7 +22,7 @@ switch:
     ports:
         - 7070:7070
     environment:
-        - MONGO_HOST=172.17.0.1
+        - MONGO_HOST=dev.localhost
         - SWITCH_MODE=DEV
     volumes:
         ['/home/docker/bankz/switch/logs:/app/logs', '/home/docker/bankz/switch/keys:/app/.keys']
@@ -34,9 +34,9 @@ trans:
     image: erangaeb/sdbltrans:0.6
     container_name: trans
     environment:
-        - SWITCH_HOST=172.17.0.1
+        - SWITCH_HOST=dev.localhost
         - SWITCH_PORT=7070
-        - MYSQL_HOST=172.17.0.1
+        - MYSQL_HOST=dev.localhost
         - MYSQL_PORT=3306
         - EPIC_HOST=124.43.16.185
         - EPIC_PORT=8200
