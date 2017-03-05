@@ -45,3 +45,16 @@ trans:
     links:
         - mysql
         - switch
+
+inq:
+    image: erangaeb/sdblinq:0.1
+    container_name: inq
+    environment:
+        - SWITCH_HOST=172.17.0.1
+        - SWITCH_PORT=7070
+        - EPIC_HOST=124.43.16.185
+        - EPIC_PORT=8200
+    volumes:
+        ['/home/senz/bankz/inq/logs:/app/logs:rw', '/home/senz/bankz/inq/keys:/app/.keys:rw']
+    links:
+        - switch

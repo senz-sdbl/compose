@@ -6,7 +6,6 @@
     environment:
         - MYSQL_ROOT_PASSWORD=root
 
-
 mongodb:
     image: erangaeb/senzmongodb:0.1
     container_name: senzmongodb
@@ -14,7 +13,6 @@ mongodb:
         ['/home/docker/bankz/mongodb:/data/db']
     ports:
         - 27017:27017
-
 
 switch:
     image: erangaeb/senzswitch:0.52
@@ -28,7 +26,6 @@ switch:
         ['/home/docker/bankz/switch/logs:/app/logs', '/home/docker/bankz/switch/keys:/app/.keys']
     links:
         - mongodb
-
 
 trans:
     image: erangaeb/sdbltrans:0.6
@@ -44,4 +41,17 @@ trans:
         ['/home/docker/bankz/trans/logs:/app/logs:rw', '/home/docker/bankz/trans/keys:/app/.keys:rw']
     links:
         - mysql
+        - switch
+
+inq:
+    image: erangaeb/sdblinq:0.1
+    container_name: inq
+    environment:
+        - SWITCH_HOST=dev.localhost
+        - SWITCH_PORT=7070
+        - EPIC_HOST=124.43.16.185
+        - EPIC_PORT=8200
+    volumes:
+        ['/home/docker/bankz/inq/logs:/app/logs:rw', '/home/docker/bankz/inq/keys:/app/.keys:rw']
+    links:
         - switch
