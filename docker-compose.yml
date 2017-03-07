@@ -47,7 +47,7 @@ trans:
         - switch
 
 inq:
-    image: erangaeb/sdblinq:0.3
+    image: erangaeb/sdblinq:0.4
     container_name: inq
     environment:
         - SWITCH_HOST=172.17.0.1
