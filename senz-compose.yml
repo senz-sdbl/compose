@@ -17,7 +17,7 @@ mongodb:
 
 
 switch:
-    image: erangaeb/senzswitch:0.52
+    image: erangaeb/senzswitch:0.53
     container_name: senzswitch
     ports:
         - 7070:7070
@@ -31,7 +31,7 @@ switch:
 
 
 trans:
-    image: erangaeb/sdbltrans:0.7
+    image: erangaeb/sdbltrans:0.8
     container_name: trans
     environment:
         - SWITCH_HOST=dev.localhost
