@@ -31,7 +31,7 @@ switch:
 
 
 trans:
-    image: erangaeb/sdbltrans:0.6
+    image: erangaeb/sdbltrans:0.7
     container_name: trans
     environment:
         - SWITCH_HOST=dev.localhost
@@ -48,7 +48,7 @@ trans:
 
 
 inq:
-    image: erangaeb/sdblinq:0.3
+    image: erangaeb/sdblinq:0.5
     container_name: inq
     environment:
         - SWITCH_HOST=dev.localhost
