@@ -29,13 +29,30 @@ switch:
     links:
         - mongodb
 
+          
+web:
+    image: hpcal1/sdblweb:0.2
+    container_name: web
+    ports:
+        - 3000:3000
+    environment:
+        - APP_DB_HOST=dev.localhost
+        - APP_DB_DATABASE=sdbl
+        - RAILS_ENV=production
+        - SECRET_KEY_BASE=6534ecca28d582de97251ca2e7a0a3b43a7aed9e0a4be5006ba4088757c72830602053fe047f2e8f30d828ff10def3ba8c9bcc0063e87521a8bc7f300f5a3cdc
+    volumes:
+        ['/home/senz/bankz/web/logs:/myapp/logs:rw']
+    links:
+        - mysql
+
 
 trans:
-    image: erangaeb/sdbltrans:0.8
+    image: erangaeb/sdbltrans:0.9
     container_name: trans
     environment:
         - SWITCH_HOST=172.17.0.1
         - SWITCH_PORT=7070
+        - DB_NAME=sdbl
         - MYSQL_HOST=172.17.0.1
         - MYSQL_PORT=3306
         - EPIC_HOST=10.100.31.240 
@@ -43,8 +60,8 @@ trans:
     volumes:
         ['/home/senz/bankz/trans/logs:/app/logs:rw', '/home/senz/bankz/trans/keys:/app/.keys:rw']
     links:
-        - mysql
         - switch
+        - web
 
 inq:
     image: erangaeb/sdblinq:0.5

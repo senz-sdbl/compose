@@ -30,12 +30,29 @@ switch:
         - mongodb
 
 
+web:
+    image: hpcal1/sdblweb:0.2
+    container_name: web
+    ports:
+        - 3000:3000
+    environment:
+        - APP_DB_HOST=dev.localhost
+        - APP_DB_DATABASE=sdbl
+        - RAILS_ENV=production
+        - SECRET_KEY_BASE=6534ecca28d582de97251ca2e7a0a3b43a7aed9e0a4be5006ba4088757c72830602053fe047f2e8f30d828ff10def3ba8c9bcc0063e87521a8bc7f300f5a3cdc
+    volumes:
+        ['/home/docker/bankz/web/logs:/myapp/logs:rw']
+    links:
+        - mysql
+
+
 trans:
-    image: erangaeb/sdbltrans:0.8
+    image: erangaeb/sdbltrans:0.9
     container_name: trans
     environment:
         - SWITCH_HOST=dev.localhost
         - SWITCH_PORT=7070
+        - DB_NAME=sdbl
         - MYSQL_HOST=dev.localhost
         - MYSQL_PORT=3306
         - EPIC_HOST=124.43.16.185
@@ -43,8 +60,8 @@ trans:
     volumes:
         ['/home/docker/bankz/trans/logs:/app/logs:rw', '/home/docker/bankz/trans/keys:/app/.keys:rw']
     links:
-        - mysql
         - switch
+        - web
 
 
 inq:
