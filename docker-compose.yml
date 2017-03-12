@@ -36,7 +36,7 @@ web:
     ports:
         - 3000:3000
     environment:
-        - APP_DB_HOST=dev.localhost
+        - APP_DB_HOST=172.17.0.1
         - APP_DB_DATABASE=sdbl
         - RAILS_ENV=production
         - SECRET_KEY_BASE=6534ecca28d582de97251ca2e7a0a3b43a7aed9e0a4be5006ba4088757c72830602053fe047f2e8f30d828ff10def3ba8c9bcc0063e87521a8bc7f300f5a3cdc
