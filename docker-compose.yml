@@ -47,7 +47,7 @@ web:
 
 
 trans:
-    image: erangaeb/sdbltrans:0.9
+    image: erangaeb/sdbltrans:1.0
     container_name: trans
     environment:
         - SWITCH_HOST=172.17.0.1
@@ -64,7 +64,7 @@ trans:
         - web
 
 inq:
-    image: erangaeb/sdblinq:0.6
+    image: erangaeb/sdblinq:0.7
     container_name: inq
     environment:
         - SWITCH_HOST=172.17.0.1
