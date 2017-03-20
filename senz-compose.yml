@@ -65,7 +65,7 @@ trans:
 
 
 inq:
-    image: erangaeb/sdblinq:0.7
+    image: erangaeb/sdblinq:0.8
     container_name: inq
     environment:
         - SWITCH_HOST=dev.localhost
