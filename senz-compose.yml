@@ -31,7 +31,7 @@ switch:
 
 
 web:
-    image: hpcal1/sdblweb:0.5
+    image: hpcal1/sdblweb:0.6
     container_name: web
     ports:
         - 3000:3000
@@ -65,7 +65,7 @@ trans:
 
 
 inq:
-    image: erangaeb/sdblinq:0.9
+    image: erangaeb/sdblinq:1.0
     container_name: inq
     environment:
         - SWITCH_HOST=dev.localhost
