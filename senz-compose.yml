@@ -47,7 +47,7 @@ web:
 
 
 trans:
-    image: erangaeb/sdbltrans:1.0
+    image: erangaeb/sdbltrans:1.1
     container_name: trans
     environment:
         - SWITCH_HOST=dev.localhost
