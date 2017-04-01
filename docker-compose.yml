@@ -23,7 +23,7 @@ switch:
         - 7070:7070
     environment:
         - MONGO_HOST=172.17.0.1
-        - SWITCH_MODE=DEV
+        - SWITCH_MODE=PROD
     volumes:
         ['/home/senz/bankz/switch/logs:/app/logs', '/home/senz/bankz/switch/keys:/app/.keys']
     links:

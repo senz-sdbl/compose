@@ -23,7 +23,7 @@ switch:
         - 7070:7070
     environment:
         - MONGO_HOST=dev.localhost
-        - SWITCH_MODE=DEV
+        - SWITCH_MODE=PROD
     volumes:
         ['/home/docker/bankz/switch/logs:/app/logs', '/home/docker/bankz/switch/keys:/app/.keys']
     links:
