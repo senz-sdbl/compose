@@ -14,8 +14,11 @@ docker-compose -f senz-compose.yml up -d
 
 ## epic
 ```
-# at sdbl
+# sdbl test
 10.100.31.240   8200
+
+# sdbl live
+10.100.31.90    8200
 
 # public  
 124.43.16.185   8200
