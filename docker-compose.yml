@@ -29,9 +29,9 @@ switch:
     links:
         - mongodb
 
-          
+
 web:
-    image: hpcal1/sdblweb:0.9
+    image: hpcal1/sdblweb:0.10
     container_name: web
     ports:
         - 3000:3000
