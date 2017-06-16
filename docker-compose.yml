@@ -55,7 +55,7 @@ trans:
         - DB_NAME=sdbl
         - MYSQL_HOST=172.17.0.1
         - MYSQL_PORT=3306
-        - EPIC_HOST=10.100.31.240 
+        - EPIC_HOST=10.100.31.90
         - EPIC_PORT=8200
     volumes:
         ['/home/senz/bankz/trans/logs:/app/logs:rw', '/home/senz/bankz/trans/keys:/app/.keys:rw']
@@ -69,7 +69,7 @@ inq:
     environment:
         - SWITCH_HOST=172.17.0.1
         - SWITCH_PORT=7070
-        - EPIC_HOST=10.100.31.240
+        - EPIC_HOST=10.100.31.90
         - EPIC_PORT=8200
     volumes:
         ['/home/senz/bankz/inq/logs:/app/logs:rw', '/home/senz/bankz/inq/keys:/app/.keys:rw']
