@@ -75,3 +75,13 @@ inq:
         ['/home/senz/bankz/inq/logs:/app/logs:rw', '/home/senz/bankz/inq/keys:/app/.keys:rw']
     links:
         - switch
+
+
+nginx:
+    image: erangaeb/senznginx:0.4
+    container_name: nginx
+    ports:
+        - 80:80
+        - 443:443
+    links:
+        - web
