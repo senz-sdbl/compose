@@ -95,6 +95,6 @@ dashboard:
         - 4000:3000
     environment:
         - MONGO_HOST=mongodb
-        - MONGO_DB=senzies
+        - MONGO_DB=senz
     links:
         - mongodb
