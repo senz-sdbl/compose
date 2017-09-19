@@ -89,10 +89,10 @@ nginx:
 
 
 dashboard:
-    image: hpcal1/senziesdashboard:0.2
+    image: hpcal1/senziesdashboard:0.3
     container_name: dashboard
     ports:
-        - 4000:3000
+        - 4000:4000
     environment:
         - MONGO_HOST=mongodb
         - MONGO_DB=senz
