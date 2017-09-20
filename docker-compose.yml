@@ -4,7 +4,7 @@ mysql:
     ports:
         - 3306:3306
     environment:
-        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 
 mongodb:
@@ -22,8 +22,8 @@ switch:
     ports:
         - 7070:7070
     environment:
-        - MONGO_HOST=mongodb
-        - SWITCH_MODE=PROD
+        - MONGO_HOST=${MONGO_HOST}
+        - SWITCH_MODE=${SWITCH_MODE}
     volumes:
         ['/home/senz/bankz/switch/logs:/app/logs', '/home/senz/bankz/switch/keys:/app/.keys']
     links:
@@ -31,15 +31,15 @@ switch:
 
 
 web:
-    image: hpcal1/sdblweb:0.10
+    image: hpcal1/sdblweb:0.11
     container_name: web
     ports:
         - 3000:3000
     environment:
-        - APP_DB_HOST=mysql
-        - APP_DB_DATABASE=sdbl
-        - RAILS_ENV=production
-        - SECRET_KEY_BASE=6534ecca28d582de97251ca2e7a0a3b43a7aed9e0a4be5006ba4088757c72830602053fe047f2e8f30d828ff10def3ba8c9bcc0063e87521a8bc7f300f5a3cdc
+        - APP_DB_HOST=${APP_DB_HOST}
+        - APP_DB_DATABASE=${APP_DB_DATABASE}
+        - RAILS_ENV=${RAILS_ENV}
+        - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     volumes:
         ['/home/senz/bankz/web/logs:/myapp/logs:rw']
     links:
@@ -50,13 +50,13 @@ trans:
     image: erangaeb/sdbltrans:1.5
     container_name: trans
     environment:
-        - SWITCH_HOST=switch
-        - SWITCH_PORT=7070
-        - DB_NAME=sdbl
-        - MYSQL_HOST=mysql
-        - MYSQL_PORT=3306
-        - EPIC_HOST=10.100.31.90
-        - EPIC_PORT=8200
+        - SWITCH_HOST=${SWITCH_HOST}
+        - SWITCH_PORT=${SWITCH_PORT}
+        - DB_NAME=${DB_NAME}
+        - MYSQL_HOST=${MYSQL_HOST}
+        - MYSQL_PORT=${MYSQL_PORT}
+        - EPIC_HOST=${EPIC_HOST}
+        - EPIC_PORT=${EPIC_PORT}
     volumes:
         ['/home/senz/bankz/trans/logs:/app/logs:rw', '/home/senz/bankz/trans/keys:/app/.keys:rw']
     links:
@@ -68,10 +68,10 @@ inq:
     image: erangaeb/sdblinq:1.0
     container_name: inq
     environment:
-        - SWITCH_HOST=switch
-        - SWITCH_PORT=7070
-        - EPIC_HOST=10.100.31.90
-        - EPIC_PORT=8200
+        - SWITCH_HOST=${SWITCH_HOST}
+        - SWITCH_PORT=${SWITCH_PORT}
+        - EPIC_HOST=${EPIC_HOST}
+        - EPIC_PORT=${EPIC_PORT}
     volumes:
         ['/home/senz/bankz/inq/logs:/app/logs:rw', '/home/senz/bankz/inq/keys:/app/.keys:rw']
     links:
@@ -94,7 +94,7 @@ dashboard:
     ports:
         - 4000:4000
     environment:
-        - MONGO_HOST=mongodb
-        - MONGO_DB=senz
+        - MONGO_HOST=${MONGO_HOST}
+        - MONGO_DB=${MONGO_DB}
     links:
         - mongodb
