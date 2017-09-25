@@ -11,13 +11,13 @@ mongodb:
     image: erangaeb/senzmongodb:0.1
     container_name: senzmongodb
     volumes:
-        ['/home/senz/bankz/mongodb:/data/db']
+        ['$MONGO_DATA_DIR:/data/db']
     ports:
         - 27017:27017
 
 
 switch:
-    image: erangaeb/senzswitch:0.53
+    image: erangaeb/senzswitch:0.57
     container_name: senzswitch
     ports:
         - 7070:7070
@@ -25,7 +25,7 @@ switch:
         - MONGO_HOST=${MONGO_HOST}
         - SWITCH_MODE=${SWITCH_MODE}
     volumes:
-        ['/home/senz/bankz/switch/logs:/app/logs', '/home/senz/bankz/switch/keys:/app/.keys']
+        ['$SWITCH_LOGS_DIR:/app/logs:rw', '$SWITCH_KEYS_DIR:/app/.keys:rw']
     links:
         - mongodb
 
@@ -41,7 +41,7 @@ web:
         - RAILS_ENV=${RAILS_ENV}
         - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     volumes:
-        ['/home/senz/bankz/web/logs:/myapp/logs:rw']
+        ['$WEB_LOGS_DIR:/myapp/logs:rw']
     links:
         - mysql
 
@@ -58,11 +58,12 @@ trans:
         - EPIC_HOST=${EPIC_HOST}
         - EPIC_PORT=${EPIC_PORT}
     volumes:
-        ['/home/senz/bankz/trans/logs:/app/logs:rw', '/home/senz/bankz/trans/keys:/app/.keys:rw']
+        ['$TRANS_LOGS_DIR:/app/logs:rw', '$TRANS_KEYS_DIR:/app/.keys:rw']
     links:
         - switch
         - mysql
         - web
+
 
 inq:
     image: erangaeb/sdblinq:1.0
@@ -73,7 +74,7 @@ inq:
         - EPIC_HOST=${EPIC_HOST}
         - EPIC_PORT=${EPIC_PORT}
     volumes:
-        ['/home/senz/bankz/inq/logs:/app/logs:rw', '/home/senz/bankz/inq/keys:/app/.keys:rw']
+        ['$INQ_LOGS_DIR:/app/logs:rw', '$INQ_KEYS_DIR:/app/.keys:rw']
     links:
         - switch
 
