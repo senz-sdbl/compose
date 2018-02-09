@@ -5,6 +5,8 @@ mysql:
         - 3306:3306
     environment:
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+        ['$MYSQL_DATA_DIR:/var/lib/mysql']
 
 
 mongodb:
@@ -66,7 +68,7 @@ trans:
 
 
 inq:
-    image: erangaeb/sdblinq:1.0
+    image: erangaeb/sdblinq:1.2
     container_name: inq
     environment:
         - SWITCH_HOST=${SWITCH_HOST}
