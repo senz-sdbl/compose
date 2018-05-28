@@ -68,7 +68,7 @@ trans:
 
 
 inq:
-    image: erangaeb/sdblinq:1.2
+    image: erangaeb/sdblinq:1.3
     container_name: inq
     environment:
         - SWITCH_HOST=${SWITCH_HOST}
