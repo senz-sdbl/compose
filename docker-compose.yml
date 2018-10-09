@@ -68,28 +68,6 @@ trans:
         - mysql
 
 
-inq:
-    image: erangaeb/sdblinq:1.3
-    container_name: inq
-    environment:
-        - SWITCH_HOST=${SWITCH_HOST}
-        - SWITCH_PORT=${SWITCH_PORT}
-        - EPIC_HOST=${EPIC_HOST}
-        - EPIC_PORT=${EPIC_PORT}
-    volumes:
-        ['$INQ_LOGS_DIR:/app/logs:rw', '$INQ_KEYS_DIR:/app/.keys:rw']
-
-
-nginx:
-    image: erangaeb/senznginx:0.4
-    container_name: nginx
-    ports:
-        - 80:80
-        - 443:443
-    links:
-        - web
-
-
 dashboard:
     image: hpcal1/senziesdashboard:0.3
     container_name: dashboard
