@@ -1,5 +1,5 @@
 mysql:
-    image: mysql
+    image: erangaeb/mysql:2.0
     container_name: mysql
     ports:
         - 3306:3306
@@ -19,7 +19,7 @@ mongodb:
 
 
 switch:
-    image: erangaeb/senzswitch:0.57
+    image: erangaeb/senzswitch:0.62
     container_name: senzswitch
     ports:
         - 7070:7070
@@ -49,9 +49,10 @@ web:
 
 
 trans:
-    image: erangaeb/sdbltrans:1.5
+    image: erangaeb/sdbltrans:1.6
     container_name: trans
     environment:
+        - SENZIE_PORT=${SENZIE_PORT}
         - SWITCH_HOST=${SWITCH_HOST}
         - SWITCH_PORT=${SWITCH_PORT}
         - DB_NAME=${DB_NAME}
@@ -59,12 +60,12 @@ trans:
         - MYSQL_PORT=${MYSQL_PORT}
         - EPIC_HOST=${EPIC_HOST}
         - EPIC_PORT=${EPIC_PORT}
+    ports:
+        - 8080:8080
     volumes:
         ['$TRANS_LOGS_DIR:/app/logs:rw', '$TRANS_KEYS_DIR:/app/.keys:rw']
     links:
-        - switch
         - mysql
-        - web
 
 
 inq:
@@ -77,8 +78,6 @@ inq:
         - EPIC_PORT=${EPIC_PORT}
     volumes:
         ['$INQ_LOGS_DIR:/app/logs:rw', '$INQ_KEYS_DIR:/app/.keys:rw']
-    links:
-        - switch
 
 
 nginx:
