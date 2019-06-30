@@ -49,7 +49,7 @@ web:
 
 
 trans:
-    image: erangaeb/sdbltrans:1.6
+    image: erangaeb/sdbltrans:1.7
     container_name: trans
     environment:
         - SENZIE_PORT=${SENZIE_PORT}
